@@ -1,0 +1,57 @@
+### Sample JSON body (create / update) — same shape for POST and PUT
+#
+# {
+#   "tradeId": "T-2026-0001",
+#   "symbol": "AAPL",
+#   "side": "BUY",
+#   "quantity": 100.5000,
+#   "price": 182.3500,
+#   "status": "NEW",
+#   "eventTimestamp": "2026-04-03T14:30:00",
+#   "sourceSystem": "OMS-1"
+# }
+#
+# Allowed side: BUY, SELL (case-insensitive; stored uppercase)
+# Allowed status: NEW, AMENDED, CANCELLED, COMPLETED (case-insensitive; stored uppercase)
+
+### POST create trade
+POST http://localhost:8080/project/api/trades
+Content-Type: application/json
+
+{
+  "tradeId": "T-2026-0001",
+  "symbol": "AAPL",
+  "side": "BUY",
+  "quantity": 100.5000,
+  "price": 182.3500,
+  "status": "NEW",
+  "eventTimestamp": "2026-04-03T14:30:00",
+  "sourceSystem": "OMS-1"
+}
+
+### GET all trades
+GET http://localhost:8080/project/api/trades
+
+### GET trade by database id (replace 1)
+GET http://localhost:8080/project/api/trades/1
+
+### GET trade by business tradeId
+GET http://localhost:8080/project/api/trades/business/T-2026-0001
+
+### PUT update trade (replace 1)
+PUT http://localhost:8080/project/api/trades/1
+Content-Type: application/json
+
+{
+  "tradeId": "T-2026-0001",
+  "symbol": "AAPL",
+  "side": "SELL",
+  "quantity": 50.0000,
+  "price": 190.0000,
+  "status": "AMENDED",
+  "eventTimestamp": "2026-04-03T15:00:00",
+  "sourceSystem": "OMS-1"
+}
+
+### DELETE trade (replace 1)
+DELETE http://localhost:8080/project/api/trades/1
